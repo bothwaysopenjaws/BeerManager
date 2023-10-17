@@ -1,61 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using BeerManager.App.Model;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 Console.WriteLine("Hello, World!");
 
 // On défini un booléen pour savoir si on continue le programme ou non
 bool keepGoing = true;
 
+BeerMana beerManager = new BeerMana();
 
-#region Ajout des types
-
-// Instanciation d'un type de bière
-BeerType blondType = new BeerType();
-blondType.Name = "Blonde";
-
-BeerType whiteType = new BeerType();
-blondType.Name = "Blanche";
-// Syntaxe alternative
-BeerType blackType = new BeerType(){ Name = "Noire"};
-
-// En passant par le constructeur
-BeerType brownType = new BeerType("Brune");
-
-// On instancie la liste des types
-List<BeerType> beerTypes = new List<BeerType>();
-
-beerTypes.Add(blondType);
-beerTypes.Add(whiteType);
-beerTypes.Add(blackType);
-beerTypes.Add(brownType);
-
-#endregion
-
-#region Ajout des brasseurs
-
-Brewer firstBrewer = new Brewer("Lancelot", "France");
-Brewer secondBrewer = new Brewer("Heineken", "Pays-Bas");
-Brewer thirdBrewer = new Brewer("Carlsberg", "Danemark");
-
-List<Brewer> brewers = new List<Brewer>();
-brewers.Add(firstBrewer);
-brewers.Add(secondBrewer);
-brewers.Add(thirdBrewer);
-
-#endregion
-
-#region Bières
-
-List<Beer> beers = new List<Beer>();
-beers.Add(new Beer() { Name = "Correff", Degree = 8, Brewer = firstBrewer, Type = blondType });
-
-#endregion
 
 // Boucle du menu
 do
 {
-
-
     // Nettoie la console.
     Console.Clear();
 
@@ -73,8 +31,64 @@ do
     switch (userChoice)
     {
         case "1":
-            Console.WriteLine("C'est parti pour l'ajout !");
-            beers.ForEach(beerTemp => Console.WriteLine(beerTemp.Name + Environment.NewLine));
+            Beer beer = new Beer(); 
+            Console.WriteLine("C'est parti pour l'ajout ! Liste actuelle : " + Environment.NewLine);
+            beerManager.Beers.ForEach(beerTemp => Console.WriteLine(beerTemp.Name + Environment.NewLine));
+            Console.WriteLine("Indiquez le nom de la bière : ");
+            beer.Name = Console.ReadLine();
+            Console.WriteLine("Indiquez son degré d'alcool");
+            float degree;
+
+            string? userDegreeInput = Console.ReadLine();
+            while (float.TryParse(userDegreeInput, out degree))
+            {
+                Console.WriteLine("Saisie du degrée incorrecte, ressaisissez");
+                userDegreeInput = Console.ReadLine();
+            }
+            beer.Degree = degree;
+
+            Console.WriteLine("Maintenant, le type, indiquez le nom correspondant parmi la liste suivante : ");
+            beerManager.BeerTypes.ForEach(bt => Console.WriteLine(bt.Name));
+
+            bool isTypeNeed = true;
+            string? inputBeerTypeUser = Console.ReadLine();
+            while (isTypeNeed)
+            {
+                if (beerManager.BeerTypes.Any(bt => (bt.Name ?? "").ToLower() == (inputBeerTypeUser ?? "").ToLower()))
+                {
+                    beer.Type = beerManager.BeerTypes.First(bt => (bt.Name ?? "").ToLower() == (inputBeerTypeUser ?? "").ToLower());
+                    isTypeNeed = false;
+                }
+                else
+                {
+                    Console.WriteLine("Veuillez ressaisir le type");
+                    inputBeerTypeUser = Console.ReadLine();
+                }
+            }
+
+            Console.WriteLine("Maintenant, le brasseur, indiquez le nom correspondant parmi la liste suivante : ");
+            beerManager.Brewers.ForEach(bw => Console.WriteLine(bw.Name + Environment.NewLine));
+            string? brewerInput = Console.ReadLine();
+            bool isBrewerNeeded = true;
+            while (isBrewerNeeded)
+            {
+
+                if (beerManager.Brewers.Any(bt => (bt.Name ?? "").ToLower() == brewerInput.ToLower()))
+                {
+                    beer.Brewer = beerManager.Brewers.First(bt => (bt.Name ?? "").ToLower() == brewerInput.ToLower());
+                    isBrewerNeeded = false;
+                }
+                else
+                {
+                    Console.WriteLine("Veuillez ressaisir le type");
+                    brewerInput = Console.ReadLine();
+
+                }
+            }
+
+            beerManager.Beers.Add(beer);
+
+
             break;
         case "2":
             Console.WriteLine("Supprimer des bières");
