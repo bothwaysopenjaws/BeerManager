@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerManager.App", "BeerManager.App\BeerManager.App.csproj", "{C5FD09D9-AAE7-4A81-9C71-3CE08170FBBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerManager.App", "BeerManager.App\BeerManager.App.csproj", "{C5FD09D9-AAE7-4A81-9C71-3CE08170FBBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntrospectionReflectivite", "IntrospectionReflectivite\IntrospectionReflectivite.csproj", "{DABAE6E7-E53C-488E-8287-4BAC069C8232}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C5FD09D9-AAE7-4A81-9C71-3CE08170FBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5FD09D9-AAE7-4A81-9C71-3CE08170FBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5FD09D9-AAE7-4A81-9C71-3CE08170FBBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DABAE6E7-E53C-488E-8287-4BAC069C8232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DABAE6E7-E53C-488E-8287-4BAC069C8232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DABAE6E7-E53C-488E-8287-4BAC069C8232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DABAE6E7-E53C-488E-8287-4BAC069C8232}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
